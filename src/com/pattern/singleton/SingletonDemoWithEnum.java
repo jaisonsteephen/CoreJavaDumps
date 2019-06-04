@@ -21,27 +21,21 @@ class LoggerResource{
 	}
 }
 enum SingletonEnum {
-	INSTANCE,INSTANCE2;
+	INSTANCE;
 	LoggerResource resource;
 	SingletonEnum(){
 		resource=new LoggerResource(Math.random());
 	}
-	public double getResourceValue() {
-		return resource.getX();
+	public LoggerResource getResource() {
+		return resource;
 	}
+
 }
 public class SingletonDemoWithEnum {
 	public static void main(String args[]) {
-		SingletonEnum enum1=SingletonEnum.INSTANCE;
-		SingletonEnum enum2=SingletonEnum.INSTANCE2;		
-		
-		System.out.println(enum1.compareTo(enum2));
-		System.out.println(enum1.equals(enum2));
-		System.out.println(enum1==enum2);
-		
-		double x=SingletonEnum.INSTANCE.getResourceValue();
-		double y=SingletonEnum.INSTANCE.getResourceValue();
-		double z=SingletonEnum.INSTANCE.getResourceValue();
+		double x=SingletonEnum.INSTANCE.getResource().getX();
+		double y=SingletonEnum.INSTANCE.getResource().getX();
+		double z=SingletonEnum.INSTANCE.getResource().getX();
 		System.out.println(x);
 		System.out.println(y);
 		System.out.println(z);
