@@ -4,6 +4,8 @@ package com.pattern.singleton;
  * @author jaison
  * Here we are using SingletonClz to access LoggerClass.
  * LoggerClass will not be accessible to outside world, since we are not providing the lib that contain LoggerClass to them.
+ * 
+ * Since SingletonClz extends LoggerClass and act as a intermediate class for SingletonDemoDoubleCheck, it implements Adaptor pattern
  *
  *  output
  *  -----------
