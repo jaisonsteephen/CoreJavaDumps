@@ -1,58 +1,49 @@
 package com.pattern.singleton;
 
-class Resource{
-	static double x;
-	Resource(double d){
+/**
+ * 
+ * @author jaison
+ * 
+ * output
+ * ------------
+ * 0.631532501517981
+ * 0.631532501517981
+ * 0.631532501517981
+ *
+ */
+class LoggerResource{
+	private double x;
+	LoggerResource(double d){
 		this.x=d;
 	}
-	public static double getX() {
+	public double getX() {
 		return x;
 	}
-	
 }
-
-class Connection{
-	static int x;
-	public static Resource getResource(double d) {
-		return new Resource(d);
+enum SingletonEnum {
+	INSTANCE,INSTANCE2;
+	LoggerResource resource;
+	SingletonEnum(){
+		resource=new LoggerResource(Math.random());
 	}
-}
-
-
-enum SingleTonEnum{
-//with instance variable////////////////////////////////////////////////
-//0.3199592006758303
-//0.3199592006758303
-	
-/*	INSTANCE;
-	private Resource resource;
-	SingleTonEnum(){
-		resource=Connection.getResource(Math.random());
+	public double getResourceValue() {
+		return resource.getX();
 	}
-	public Resource getResource() {
-		return INSTANCE.resource;
-	}*/
-	
-//	without instance variable////////////////////////////////////////////
-//	o/p  	
-//	0.45993043645298914		
-//	0.754572339735547
-	INSTANCE;
-	private Resource resource;
-	SingleTonEnum(){
-		//resource=Connection.getResource(Math.random());
-	}
-	public Resource getResource() {
-		resource=Connection.getResource(Math.random());
-		return resource;
-	}
-	
 }
 public class SingletonDemoWithEnum {
-public static void main(String args[]){
-	double x=SingleTonEnum.INSTANCE.getResource().getX();
-	double y=SingleTonEnum.INSTANCE.getResource().getX();
-	System.out.println(x);
-	System.out.println(y);
-}
+	public static void main(String args[]) {
+		SingletonEnum enum1=SingletonEnum.INSTANCE;
+		SingletonEnum enum2=SingletonEnum.INSTANCE2;		
+		
+		System.out.println(enum1.compareTo(enum2));
+		System.out.println(enum1.equals(enum2));
+		System.out.println(enum1==enum2);
+		
+		double x=SingletonEnum.INSTANCE.getResourceValue();
+		double y=SingletonEnum.INSTANCE.getResourceValue();
+		double z=SingletonEnum.INSTANCE.getResourceValue();
+		System.out.println(x);
+		System.out.println(y);
+		System.out.println(z);
+	}
 }
