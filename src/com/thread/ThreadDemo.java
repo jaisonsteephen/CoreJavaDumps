@@ -1,3 +1,4 @@
+package com.thread;
 
 public class ThreadDemo extends Thread{
 	private int counter;

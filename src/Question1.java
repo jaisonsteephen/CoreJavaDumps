@@ -4,7 +4,9 @@ public class Question1 {
 	public static void JavaHungry(Integer s) {
 		System.out.println("i");
 	}
-
+	public static void JavaHungry(Float s) {
+		System.out.println("i");
+	}
 	public static void JavaHungry(Object o) {
 		System.out.println("o");
 	}

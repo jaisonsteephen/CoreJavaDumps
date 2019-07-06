@@ -1,9 +1,10 @@
 
 public class PrimitiveDemo {
 public static void main(String args[]){
-	Byte byt=(byte) 255;
+	Byte byt=(byte) 512;
 	System.out.println(byt);
 	System.out.println(byt.SIZE);
+	System.out.println(byt.BYTES);
 	
 	Boolean bool=true;
 	//System.out.println(bool.SIZE); //Boolean.size is not defined
@@ -17,7 +18,7 @@ public static void main(String args[]){
 	
 		
 	float f = 0.27f;
-	double d2 = (double) f;
+	double d2 =  f;
 	double d3 = 0.27d;
 
 	System.out.println(Integer.toBinaryString(Float.floatToRawIntBits(f)));

@@ -1,3 +1,5 @@
+package com.java8;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public static void main(String args[]){
 	strList.add("three");
 	strList.add("four");
 	strList.add("five");
-	strList.forEach(System.out::print);
+	//strList.forEach(System.out::print);
+	strList.forEach(System.out::println);
 }
 }
