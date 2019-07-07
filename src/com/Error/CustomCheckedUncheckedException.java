@@ -12,10 +12,13 @@ class MyUncheckedException extends RuntimeException{
 	}
 }
 
-public class CustomExceptionDemo {
+public class CustomCheckedUncheckedException {
 
-	public static void main(String[] args) throws MyCheckedException {
-		//throw new MyCheckedException("excepppppppppppppppppppppppppppppppp");
+	public static void main(String[] args) /*throws MyCheckedException*/ {
+		if(true)
+		throw new MyCheckedException("excepppppppppppppppppppppppppppppppp");
+		//uncomment throws to remove the error
+		
 		throw new MyUncheckedException("uncheckedddddddddddd");
 	}
 
