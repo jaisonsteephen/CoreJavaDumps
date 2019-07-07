@@ -1,15 +1,22 @@
 package com.biwiseOperations;
-
+/**
+ * 
+ * 
+ * Dont take for interview preparation
+ * 
+ * @author jaison
+ *
+ */
 public class PowerDemo {
 	public static void main(String[] args) {
 		// Basic way with O(n)
 		int a = 2;
-		int b = 4;
+		int b = 3;
 		long result = 1;
-//		for (int i = 1; i <= b; i++) {
-//			result *= a;
-//		}
-//		System.out.println(result);
+		for (int i = 1; i <= b; i++) {
+			result *= a;
+		}
+		System.out.println(result);
 
 		// Efficient way with O(log n)
 		System.out.println(ipow(a, b));
