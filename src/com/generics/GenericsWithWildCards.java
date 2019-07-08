@@ -3,33 +3,42 @@ package com.generics;
 import java.util.ArrayList;
 import java.util.List;
 
-class GenericsWithWildCards
-{
-        public static void main(String[] args) 
-        {
-            List<Integer> integerList = new ArrayList<Integer>();
-            integerList.add(3); 
-            integerList.add(5); 
-            integerList.add(10);
-            //print(integerList);
-            
-            List<String> stringList = new ArrayList<String>();
-            stringList.add("A"); 
-            stringList.add("B"); 
-            stringList.add("C");
-            // print(stringList); // LINE A
-            
-        }
-    
-        // public static void print(List<Number> list) // LINE B
-    
-        public static void print(List<? extends Number> list) // LINE C
-        {
-            for(Number input : list)
-            {
-                System.out.print(input +" ");
-            }
-            
-        }
+class Clas1 {
+
+}
+
+class Clas2 extends Clas1 {
+
+}
+
+class Clas3 extends Clas2 {
+
+}
+
+class Clas4 extends Clas3 {
+
+}
+
+class GenericsWithWildCards {
+	public static void main(String[] args) {
+
+		List<Clas1> cl1 = new ArrayList<>();
+		List<Clas4> cl4 = new ArrayList<>();
+
+		extend_FreeUpperBound(cl1);//Error Because it will allow not allow Parent class
+		extend_FreeUpperBound(cl4);
+
+		super_FreelowerBound(cl1);
+		super_FreelowerBound(cl4);//Error Because it will allow not allow Child class
+
+	}
+
+	public static void extend_FreeUpperBound(List<? extends Clas3> list) {
+
+	}
+
+	public static void super_FreelowerBound(List<? super Clas3> list) {
+
+	}
 
 }
