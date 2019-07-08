@@ -19,7 +19,7 @@ public class IteratorDemo {
 		Iterator<String> itr=strList.iterator();
 		while(itr.hasNext()){
 			strList.remove("333");
-			String x=itr.next();
+			String x=itr.next();//ConcurrentModificationException
 			System.out.println(x);
 		}
 	}
