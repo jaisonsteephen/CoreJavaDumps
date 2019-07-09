@@ -1,13 +1,13 @@
-package com.oops.abstraction2;
+package com.oops.abstraction;
 
 
- abstract class AbstractVehicle2 {
+ abstract class AbstractVehicle {
     protected int speedFactor() {
         return 5;
     }
 }
 
-class SUV extends AbstractVehicle2{
+class SUV extends AbstractVehicle{
  
 }
 
