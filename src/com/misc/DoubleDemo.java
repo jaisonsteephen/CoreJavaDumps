@@ -1,4 +1,4 @@
-package com.office.misc;
+package com.misc;
 
 public class DoubleDemo {
 public static void displayDouble(Double ...d){

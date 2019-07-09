@@ -1,4 +1,4 @@
-package com.office.misc;
+package com.misc;
 
 interface MyInterface{
 	void doSomething();

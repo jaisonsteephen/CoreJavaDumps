@@ -1,4 +1,4 @@
-package com.office.misc;
+package com.misc;
 
 public class StringDemo {
 public static void main(String args[]){

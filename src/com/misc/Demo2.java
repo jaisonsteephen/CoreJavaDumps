@@ -1,4 +1,4 @@
-package com.office.misc;
+package com.misc;
 
 public class Demo2 {
 public static void main(String ...args){
@@ -6,9 +6,9 @@ public static void main(String ...args){
 	Character c2='\u00ff';
 	System.out.printf("%b,%b", (c1.equals(c2)),(c1==c2));
 	
-//	Character c1='\uFFFF';
-//	Character c2='\u00ff';
-//	
-//	System.out.printf("%s", c1.toString());
+	Character c3='\uFFFF';
+	Character c4='\u00ff';
+	
+	System.out.printf("%s", c3.toString());
 }
 }
