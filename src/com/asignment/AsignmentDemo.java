@@ -1,4 +1,4 @@
-package com.office.asignment;
+package com.asignment;
 
 public class AsignmentDemo {
 	public static void main(String args[]) {

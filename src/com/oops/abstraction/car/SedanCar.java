@@ -1,6 +1,6 @@
 package com.oops.abstraction.car;
 
-import com.abstraction.vehicle.AbstractVehicle;
+import com.oops.abstraction.vehicle.AbstractVehicle;
 
 public class SedanCar extends AbstractVehicle {
     public static void main(String[] args) {

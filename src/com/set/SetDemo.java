@@ -1,4 +1,4 @@
-package com.office.set;
+package com.set;
 
 import java.util.HashSet;
 import java.util.Set;

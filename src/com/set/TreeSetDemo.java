@@ -1,4 +1,4 @@
-package com.office.set;
+package com.set;
 
 class NewTreeSet{
 void count(){
