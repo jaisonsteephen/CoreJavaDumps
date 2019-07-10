@@ -2,6 +2,7 @@ package com.thread.threadVsRunnable;
 
 public class ExtendThread extends Thread{
 private int counter=0;
+@Override
 public void run(){
 	try {
 		Thread.sleep(100);

@@ -1,5 +1,6 @@
 package com.thread.sync;
 
+//This code is not fine. not take for interview
 class StaticClass {
 
 	public synchronized void staticWait(Object obj) {
