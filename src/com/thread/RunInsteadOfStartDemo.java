@@ -13,7 +13,7 @@ class MyThread2 extends Thread {
 public class RunInsteadOfStartDemo {
 	public static void main(String args[]) {
 		MyThread2 m = new MyThread2("Jaison");
-		m.run();
+		m.run(); //Here it will not create separate thread. but run() will act as normal function
 		//m.start();
 	}
 }

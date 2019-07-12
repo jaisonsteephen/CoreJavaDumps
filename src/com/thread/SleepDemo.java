@@ -1,58 +1,41 @@
 package com.thread;
 
-class MyThread5 extends Thread{
+class MyThread6 extends Thread {
 	@Override
-	public void run(){
-		for(int x=1;x<10;x=x+2){
-			try {
-				//this.sleep(60000);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("================================="+x);
+	public void run() {
+
+		try {
+			Thread.sleep(60000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();	
 		}
 	}
 }
-class MyThread6 extends Thread{
-	@Override
-	public void run(){
-		
-		for(int x=2;x<999999999;x=x+2){
-			try {
-				Thread.sleep(60000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println(x);
-				System.out.println("--------is interrupted:"+this.interrupted());
-			}
-			
-			
-		}
-	}
-}
+
 public class SleepDemo {
-public static void main(String args[]){
-	MyThread5 m1=new MyThread5();
-	MyThread6 m2=new MyThread6();
-	m1.start();
-	m2.start();
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	public static void main(String args[]) {
+		MyThread6 thread = new MyThread6();
+		thread.start();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+		}
+		if (!thread.isInterrupted()) {
+			thread.interrupt();
+		}
+		if (thread.isAlive() &&  thread.isInterrupted()) {
+			System.out.println("Thread interrupted");
+		}
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+		}
+		if (!thread.isAlive()) {
+			System.out.println("Thread is finished. Hence interrupted status is:"+thread.isInterrupted());
+			//Thread is finished. Hence interrupted status is:false
+		}
+
+
 	}
-	m2.interrupt();
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	System.out.println("is interrupted:"+m2.isInterrupted());
-	
-	
-}
 }
