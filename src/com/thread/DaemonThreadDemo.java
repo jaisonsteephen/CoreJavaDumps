@@ -1,6 +1,6 @@
 package com.thread;
 
-public class DemoJoin extends Thread {
+public class DaemonThreadDemo extends Thread {
 	public void run() {
 		if (Thread.currentThread().isDaemon()) {// checking for daemon thread
 			System.out.println("daemon thread work");
@@ -10,15 +10,11 @@ public class DemoJoin extends Thread {
 	}
 
 	public static void main(String[] args) {
-		DemoJoin t1 = new DemoJoin();// creating thread
-		DemoJoin t2 = new DemoJoin();
-		DemoJoin t3 = new DemoJoin();
+		DaemonThreadDemo t1 = new DaemonThreadDemo();// creating thread
 
-		// now t1 is daemon thread
-
-		t1.start();// starting threads
-		t2.start();
-		t1.setDaemon(true);
-		t3.start();
+		
+		t1.setDaemon(true);       // now t1 is daemon thread. setDaemon should called b4 start. otherwise get IllegalThreadStateException
+		t1.start();	
+		//t1.setDaemon(true);     // java.lang.IllegalThreadStateException
 	}
 }
