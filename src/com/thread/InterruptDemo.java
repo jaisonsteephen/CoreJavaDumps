@@ -12,7 +12,7 @@ class MyThread6 extends Thread {
 	}
 }
 
-public class SleepDemo {
+public class InterruptDemo {
 	public static void main(String args[]) {
 		MyThread6 thread = new MyThread6();
 		thread.start();
