@@ -18,7 +18,7 @@ public class StartTwiceDemo {
 	public static void main(String ... args){
 		MyThread MyThread1=new MyThread();
 		MyThread1.start();
-		MyThread1.start();
+		MyThread1.start();//java.lang.IllegalThreadStateException
 	}
 	
 	

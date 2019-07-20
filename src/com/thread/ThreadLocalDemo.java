@@ -1,42 +1,65 @@
 package com.thread;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class ThreadLocalDemo {
-	public static class MyRunnable implements Runnable {
+/**
+ * 
+ * @author jaison
+ * There are situation where some unique id is generated and propagated to other layers as function parameters. this will
+ * make the code redundant. to avoid this we can use Thread Local. If use so, there is no need to pass this as function
+ * argument, but can take it directly from thread local
+ * 
+ * Here getThreadId, and startDate.get same data before and after sleep 
+ *
+ */
+class ThreadLocalClz implements Runnable {
+	// Atomic integer containing the next thread ID to be assigned
+	private static final AtomicInteger nextId = new AtomicInteger(0);
 
-		private ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>();
-		List<String> lt=new ArrayList<>();
-		private ThreadLocal<List<String>> threadLocal2 = new ThreadLocal<List<String>>();
-
+	// Thread local variable containing each thread's ID
+	private static final ThreadLocal<Integer> threadId = new ThreadLocal<Integer>() {
 		@Override
-		public void run() {
-			threadLocal.set((int) (Math.random() * 100D));
-			lt.add("one");
-
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-			}
-
-			System.out.println(threadLocal.get());
-			System.out.println(lt);
+		protected Integer initialValue() {
+			return nextId.getAndIncrement();
 		}
+	};
+
+	// Returns the current thread's unique ID, assigning it if necessary
+	public int getThreadId() {
+		return threadId.get();
 	}
 
-	public static void main(String[] args) throws InterruptedException {
-		MyRunnable sharedRunnableInstance = new MyRunnable();
+	// Returns the current thread's starting timestamp
+	private static final ThreadLocal<Date> startDate = new ThreadLocal<Date>() {
+		protected Date initialValue() {
+			return new Date();
+		}
+	};
 
-		Thread thread1 = new Thread(sharedRunnableInstance);
-		Thread thread2 = new Thread(sharedRunnableInstance);
+	@Override
+	public void run() {
+		System.out.printf("Starting Thread: %s : %s\n", getThreadId(), startDate.get());
+		try {
+			TimeUnit.SECONDS.sleep((int) Math.rint(Math.random() * 10));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.printf("Thread Finished: %s : %s\n", getThreadId(), startDate.get());
+	}
+}
 
-		thread1.start();
-		thread2.start();
+public class ThreadLocalDemo {
 
-		thread1.join(); // wait for thread 1 to terminate
-		thread2.join(); // wait for thread 2 to terminate
+	public static void main(String[] args) {
+		Thread thread = null;
+		ThreadLocalClz r = new ThreadLocalClz();
+
+		for (int i = 1; i < 50; i++) {
+			thread = new Thread(r, "Thread" + i);
+			thread.start();
+		}
+
 	}
 }

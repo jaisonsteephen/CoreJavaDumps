@@ -1,75 +1,61 @@
 package com.thread;
 
+/**
+ * 
+ * @author jaison
+ * 
+ * Not yet find a proper solution for mixing static sync with non-static 
+ *
+ */
 class Table {
+	static int number;
+	static String x = "";
 
-	static synchronized int printTable(int n) {
-		int i;
-		for (i = 1; i <= 10; i++) {
-			System.out.println(n * i);
+	void printTable(int n, int sleep) {
+		synchronized (x) {
 			try {
-				Thread.sleep(400);
+				Thread.sleep(sleep);
+				number = n;
 			} catch (Exception e) {
 			}
 		}
-		return n*i;
+	}
+
+	int get() {
+		synchronized (x) {
+			return number;
+		}
 	}
 }
 
 class MyThread01 extends Thread {
-	int i;
-	public void run() {
-		i=Table.printTable(1);
-	}
-	public synchronized int getI(){
-		return i;
-	}
-}
+	int number;
+	int sleep;
 
-class MyThread02 extends Thread {
-	int i;
-	public void run() {
-		i=Table.printTable(10);
+	MyThread01(int number, int sleep) {
+		this.number = number;
+		this.sleep = sleep;
 	}
-	public synchronized int getI(){
-		return i;
-	}
-}
 
-class MyThread03 extends Thread {
-	int i;
 	public void run() {
-		i=Table.printTable(100);
-	}
-	public synchronized int getI(){
-		return i;
-	}
-}
-
-class MyThread04 extends Thread {
-	int i;
-	public void run() {
-		i=Table.printTable(1000);
-	}
-	public synchronized int getI(){
-		return i;
+		Table t = new Table();
+		t.printTable(number, sleep);
 	}
 }
 
 public class StaticSyncWithNonStaticSyncIssues {
-	//Issue --Static and non staic have no co-ordinate work
-	
-	public static void main(String t[]) {
-		MyThread01 t1 = new MyThread01();
-		MyThread02 t2 = new MyThread02();
-		MyThread03 t3 = new MyThread03();
-		MyThread04 t4 = new MyThread04();
+	// Issue --Static and non staic have no co-ordinate work
+
+	public static void main(String args[]) {
+		MyThread01 t1 = new MyThread01(1, 0);
+		MyThread01 t2 = new MyThread01(5, 7000);
 		t1.start();
 		t2.start();
-		t3.start();		
-		t4.start();
-		System.out.println("t1--------------------------------"+t1.getI());
-		System.out.println("t2--------------------------------"+t2.getI());
-		System.out.println("t3--------------------------------"+t3.getI());
-		System.out.println("t4--------------------------------"+t4.getI());
+		try {
+			Thread.sleep(100);
+		} catch (Exception e) {
+		}
+		Table t = new Table();
+		System.out.println(t.get());
 	}
 }

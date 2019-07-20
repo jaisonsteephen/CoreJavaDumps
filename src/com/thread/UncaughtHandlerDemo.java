@@ -8,7 +8,7 @@ class MyThread7 extends Thread {
 			
 			@Override
 			public void uncaughtException(Thread t, Throwable e) {
-				System.out.println("inside UncaughtExceptionHandler");
+				System.out.println("inside UncaughtExceptionHandler:	"+e);
 			}
 		});
 		Runtime.getRuntime().addShutdownHook(new Thread() {
